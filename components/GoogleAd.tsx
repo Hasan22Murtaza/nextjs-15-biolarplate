@@ -27,7 +27,7 @@ const GoogleAd = () => {
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-2676022322411376" // Match the client ID from the script
-        data-ad-slot="YOUR_AD_SLOT_ID" // Replace with your ad unit slot ID
+        data-ad-slot="7779469352" // Replace with your ad unit slot ID
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
