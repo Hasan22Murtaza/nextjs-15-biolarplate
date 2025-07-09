@@ -12,7 +12,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
-
+import { ReactNode } from 'react';
 type MetadataProps = {
   params: Promise<{ locale: string }>;
 };
@@ -36,15 +36,16 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   themeColor: siteConfig.themeColors,
 };
+type LayoutProps = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>; // params is a Promise
+};
 
 export default async function LocaleLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const { locale } = await params;
+}: LayoutProps) {
+const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
