@@ -1,13 +1,10 @@
-import { headerLinks } from "@/components/header/HeaderLinks";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { siteConfig } from "@/config/site";
@@ -22,7 +19,6 @@ export default function MobileMenu() {
   return (
     <div className="flex items-center gap-x-2 md:hidden">
       <LocaleSwitcher />
-      <ThemeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger className="p-2">
           <Menu className="h-5 w-5" />
@@ -46,21 +42,6 @@ export default function MobileMenu() {
               </span>
             </I18nLink>
           </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            {headerLinks.map((link) => (
-              <DropdownMenuItem key={link.name}>
-                <I18nLink
-                  href={link.href}
-                  title={tHeader(link.name)}
-                  prefetch={false}
-                >
-                  {tHeader(link.name)}
-                </I18nLink>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem className="p-2 focus:bg-transparent justify-end">
               <div className="flex items-center gap-x-4"></div>

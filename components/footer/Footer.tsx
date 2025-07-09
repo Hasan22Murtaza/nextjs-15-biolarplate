@@ -1,4 +1,3 @@
-import { Newsletter } from "@/components/footer/Newsletter";
 import { TwitterX } from "@/components/social-icons/icons";
 import { siteConfig } from "@/config/site";
 import { Link as I18nLink } from "@/i18n/routing";
@@ -76,10 +75,6 @@ export default function Footer() {
                     </a>
                   )}
                 </div>
-              </div>
-
-              <div className="w-full flex-1">
-                <Newsletter />
               </div>
             </div>
 
