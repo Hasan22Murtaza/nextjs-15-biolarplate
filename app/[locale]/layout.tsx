@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/Footer";
+import GoogleAd from "@/components/GoogleAd";
 import Header from "@/components/header/Header";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { siteConfig } from "@/config/site";
@@ -12,7 +13,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
+
 type MetadataProps = {
   params: Promise<{ locale: string }>;
 };
@@ -36,16 +38,14 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   themeColor: siteConfig.themeColors,
 };
+
 type LayoutProps = {
   children: ReactNode;
-  params: Promise<{ locale: string }>; // params is a Promise
+  params: Promise<{ locale: string }>;
 };
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: LayoutProps) {
-const { locale } = await params;
+export default async function LocaleLayout({ children, params }: LayoutProps) {
+  const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
@@ -58,7 +58,14 @@ const { locale } = await params;
 
   return (
     <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
-      <head />
+      <head>
+        {/* Google AdSense script */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2676022322411376"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background flex flex-col font-sans antialiased"
@@ -74,6 +81,8 @@ const { locale } = await params;
 
             <main className="flex-1 flex flex-col items-center">
               {children}
+              {/* Add Google Ad below the main content */}
+              <GoogleAd />
             </main>
 
             {messages.Footer && <Footer />}
